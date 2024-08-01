@@ -1,25 +1,42 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from './Login';
+import Welome from './Welome';
+import { useEffect, useState } from 'react';
+
+import LogoutPopup from './LogoutPopup';
+import ProtectedRoute from './components/ProtectedRoutes';
+import PrivateRoutes from './components/PrivateRoutes';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+
+
+
+ 
+
+
+
+  return (<>
+
+    <BrowserRouter >
+      <Routes>
+        <Route element={<PrivateRoutes />}>
+          <Route path="/" element={<Login />} />
+        </Route>
+        <Route element={<ProtectedRoute />}>
+          <Route path="/welcome" element={<Welome />} />
+        </Route>
+      </Routes>
+      <LogoutPopup />
+
+    </BrowserRouter>
+  </>
   );
 }
 
 export default App;
+
+
+
